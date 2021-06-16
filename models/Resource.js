@@ -43,7 +43,8 @@ const resourceSchema = new mongoose.Schema({
         required: true
     },
     remarks: {
-        type: String
+        type: String,
+        trim: true
     }
 }, { timestamps: true });
 

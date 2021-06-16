@@ -1,3 +1,5 @@
+const authRoute = require('./auth')
+
 
 module.exports = {
     routes: function (app) {
@@ -5,8 +7,7 @@ module.exports = {
             res.json({ "message": req.headers.origin })
         });
 
-        // app.use('/api', authRoute);
-        // app.use('/api/carrier', authenticate,carrierRoute);
+        app.use('/api/auth', authRoute);
 
     }
 }

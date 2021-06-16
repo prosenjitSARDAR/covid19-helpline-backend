@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//INITIALIZING ROUTES
+//INITIALIZING ALL-ROUTES
 allRoute.routes(app);
 
 //404 ROUTE

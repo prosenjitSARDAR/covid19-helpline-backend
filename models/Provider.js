@@ -17,13 +17,9 @@ const providerSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, "please enter a password"],
+        required: [true, "Please enter a password"],
         trim: true,
         minlength: 6
-    },
-    resource: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Resource'
     }
 
 }, { timestamps: true });
