@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const resourceSchema = new mongoose.Schema({
-    name: {
+    resourceName: {
         type: String,
         required: [true, "Please enter resource name"],
         trim: true
@@ -10,7 +10,8 @@ const resourceSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, "Please select a resource category"],
-        trim: true
+        trim: true,
+        lowercase: true
     },
     address: {
         type: String,
@@ -33,21 +34,22 @@ const resourceSchema = new mongoose.Schema({
         trim: true,
         unique: true
     },
-    resource_provider: {
+    resource_provider_id: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Provider'
+        ref: 'provider'
     },
     availibility: {
         type: Boolean,
         default: true,
-        required: true
+        required: [true, "Please select the availibility status of your service"]
     },
     remarks: {
         type: String,
-        trim: true
+        trim: true,
+        default: true
     }
 }, { timestamps: true });
 
-const Resource = mongoose.model('Resource', resourceSchema);
+const Resource = mongoose.model('resource', resourceSchema);
 
 module.exports = Resource;

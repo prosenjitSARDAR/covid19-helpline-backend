@@ -20,11 +20,16 @@ const providerSchema = new mongoose.Schema({
         required: [true, "Please enter a password"],
         trim: true,
         minlength: 6
+    },
+    resource_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'resource',
+        default: null
     }
 
 }, { timestamps: true });
 
 
-const Provider = mongoose.model('Provider', providerSchema);
+const Provider = mongoose.model('provider', providerSchema);
 
 module.exports = Provider;
