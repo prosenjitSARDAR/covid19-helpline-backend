@@ -1,4 +1,3 @@
-
 class BaseController {
     constructor() {
 
@@ -20,10 +19,6 @@ class BaseController {
         }
         response.json(errorResponse);
     }
-
-    // getCompanyDetails(companyId) {
-    //     return COMPANY.findOne({ _id: ObjectId(companyId) }).exec();
-    // }  
 
 }
 

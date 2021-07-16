@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const cron = require('node-cron');
 const createError = require('http-errors');
+const CronController = require('./controllers/cronController');
 require('dotenv').config();
 require('./Database/db');
 
@@ -16,6 +18,15 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//SCHEDULED CRON JOBS
+cron.schedule('* * */23 * * *', () => {
+    CronController.getCovidData().then(success => {
+        //This Cron job update the daily Covid Data.
+    }).catch(error => {
+
+    })
+});
 
 //INITIALIZING ALL-ROUTES
 allRoute.routes(app);

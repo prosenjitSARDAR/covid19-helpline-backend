@@ -1,5 +1,5 @@
 const authRoute = require('./authRoute')
-
+const dataRoute = require('./dataRoute');
 
 module.exports = {
     routes: function (app) {
@@ -8,6 +8,6 @@ module.exports = {
         });
 
         app.use('/api/auth', authRoute);
-
+        app.use('/api/data', dataRoute);
     }
 }
