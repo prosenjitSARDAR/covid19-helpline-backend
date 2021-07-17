@@ -10,6 +10,7 @@ const resourceSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, "Please select a resource category"],
+        enum: ["oxygen", "hospital", "medicine", "test-lab", "kitchen", "ambulance"],
         trim: true,
         lowercase: true
     },
