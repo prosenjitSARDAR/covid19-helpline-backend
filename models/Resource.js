@@ -47,7 +47,7 @@ const resourceSchema = new mongoose.Schema({
     remarks: {
         type: String,
         trim: true,
-        default: true
+        default: null
     }
 }, { timestamps: true });
 

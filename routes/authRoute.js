@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
-const Authenticate = require('../middlewares/authenticate');
 
 
 //REGISTRATION          POST    http://localhost:3000/api/auth/registration

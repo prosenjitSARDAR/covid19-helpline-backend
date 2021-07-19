@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
         const token = req.headers.authorization;
         const decode = jwt.verify(token, 'SECRET');
 
-        PROVIDER.find({ _id: decode.id, email: decode.email }).then(user => {
+        PROVIDER.find({ _id: decode._id, email: decode.email }).then(user => {
             if (user) {
                 req.currentUser = user[0];
                 next()
