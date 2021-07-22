@@ -61,6 +61,10 @@ class authService extends baseService {
         return PROVIDER.findByIdAndUpdate(provider_id, { resource_id: resourceId }, { new: true }).exec()
     }
 
+    saveNewPassword(Id, newPassword) {
+        return PROVIDER.findByIdAndUpdate(Id, { password: newPassword }, { new: true }).exec()
+    }
+
 
 }
 

@@ -83,7 +83,6 @@ class AuthController extends baseController {
 
                     } else {
                         //If Email or Password not match
-                        //Here we are not throwing Error (Due to app crash). We are using error response of baseController
                         return res.status(403).send({ errors: "Something wrong happened. Please try again later.", success: false });
 
                     }
@@ -92,6 +91,53 @@ class AuthController extends baseController {
             } else {
                 //If email id does not exist in DB
                 throw createError.Unauthorized("Sorry! Username or password not valid")
+            }
+
+        } catch (err) {
+            console.log(err);
+            if (err.name === 'ValidationError') {
+                next(createError(422, err.message));
+                return;
+            }
+            next(err);
+        }
+    }
+
+
+    async changePassword(req, res, next) {
+        try {
+            const { _id, password } = req.currentUser;
+            const { currentPassword, newPassword, confirmPassword } = req.body;
+
+            if (newPassword == confirmPassword) {
+
+                //HASHING NEW PASSWORD
+                const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+                //Comparing Password
+                bcrypt.compare(currentPassword, password, (err, result) => {
+                    if (err) {
+                        //IF something went wrong or any error happen
+                        throw createError.Unauthorized("Sorry! Something went wrong. Please try again later");
+
+                    } else if (result == true) {
+                        //If password match
+                        this.authService.saveNewPassword(_id, hashedPassword).then(result => {
+                            return res.status(201).send({ message: "Done! password has been changed successfully.", success: true });
+
+                        }).catch((error) => {
+
+                        })
+
+                    } else {
+                        //If Password not matchhashedPassword
+                        return res.status(403).send({ errors: "You've entered wrong password.", success: false });
+
+                    }
+                })
+
+            } else {
+                return res.status(403).send({ errors: "Entered 'new password' and 'confirm password' does not match", success: false });
             }
 
         } catch (err) {
