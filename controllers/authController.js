@@ -83,14 +83,14 @@ class AuthController extends baseController {
 
                     } else {
                         //If Email or Password not match
-                        return res.status(403).send({ errors: "Something wrong happened. Please try again later.", success: false });
+                        return res.status(403).send({ errors: "Incorrect email or Password. Please try again", success: false });
 
                     }
                 })
 
             } else {
                 //If email id does not exist in DB
-                throw createError.Unauthorized("Sorry! Username or password not valid")
+                throw createError.Unauthorized("Incorrect email or Password. Please try again")
             }
 
         } catch (err) {

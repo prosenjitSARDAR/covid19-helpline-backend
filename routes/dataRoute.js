@@ -13,4 +13,7 @@ router.get('/profile-details', authenticate, dataController.getProfileData.bind(
 //update-profile-Data         PATCH    http://localhost:3000/api/data/profile-details
 router.patch('/profile-details', authenticate, dataController.updateProfileData.bind(dataController));
 
+//get-resource         GET    http://localhost:3000/api/data/resource/:category
+router.get('/resource/:category', dataController.getResources.bind(dataController));
+
 module.exports = router;

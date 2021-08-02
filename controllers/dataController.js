@@ -112,6 +112,24 @@ class dataController extends baseController {
         }
     }
 
+    async getResources(req, res, next) {
+        try {
+            const category = req.params.category;
+
+            let resources = await this.dataService.getResources(category);
+
+            return res.status(200).send({ message: "Done! Get resources successfully", success: true, resources })
+
+        } catch (err) {
+            console.log(err);
+            if (err.name === 'ValidationError') {
+                next(createError(422, err.message));
+                return;
+            }
+            next(err);
+        }
+    }
+
 }
 
 module.exports = new dataController;

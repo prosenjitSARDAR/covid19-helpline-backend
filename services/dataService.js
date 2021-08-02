@@ -49,6 +49,16 @@ class authService extends baseService {
         }
     }
 
+    async getResources(category) {
+        try {
+            let resources = await RESOURCE.find({ category: category }).select("-_id -__v -resource_provider_id -createdAt")
+            return resources;
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
 }
 
 
