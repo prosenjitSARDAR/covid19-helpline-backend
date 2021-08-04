@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //MONGOOSE CONNECTION
 mongoose
-    .connect(process.env.MongoDB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true, useFindAndModify: false })
+    .connect(process.env.MongoDB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
     .then(() => {
         console.log("mongoDB Connected");
     })
@@ -26,7 +26,7 @@ mongoose.connection.on('disconnected', () => {
 })
 
 //THIS FUNCTION RUNS WHEN WE STOP THE APPLICATION (CONTROL+C)
-process.on('SIGINT', async() => {
+process.on('SIGINT', async () => {
     await mongoose.connection.close(); //DISCONNECTED CALLBACK FUNCTION
     process.exit(0);
 })
