@@ -1,9 +1,7 @@
-const baseController = require('./baseController');
 const CronService = require('../services/cronService');
 
-class CronController extends baseController {
+class CronController {
     constructor() {
-        super();
         this.cronService = new CronService();
     }
 

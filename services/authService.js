@@ -1,11 +1,10 @@
-const baseService = require('./baseService');
 const PROVIDER = require('../models/Provider');
 const RESOURCE = require('../models/Resource');
 
-class authService extends baseService {
+class authService {
 
     constructor() {
-        super();
+        
     }
 
     async isEmailExistCheck(email) {

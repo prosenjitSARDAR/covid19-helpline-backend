@@ -1,13 +1,10 @@
 const createError = require('http-errors');
-const baseController = require('./baseController');
 const dataService = require('../services/dataService');
 
-class dataController extends baseController {
+class dataController {
 
     constructor() {
-        super();
         this.dataService = new dataService();
-
     }
 
     //GET DAILY COVID DATA

@@ -1,17 +1,16 @@
-const baseService = require('./baseService');
 const covid_data = require('../models/CovidData');
 const RESOURCE = require('../models/Resource');
 const PROVIDER = require('../models/Provider');
 
-class authService extends baseService {
+class authService {
 
     constructor() {
-        super();
+
     }
 
     async getCovidData() {
         try {
-            let data = await covid_data.find({}).exec()
+            let data = await covid_data.find({}).select("-country -_id -__v -updatedAt -createdAt")
             return data;
 
         } catch (err) {

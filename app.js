@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //SCHEDULED CRON JOBS
-cron.schedule('* * */23 * * *', () => {
+cron.schedule('* * */3 * * *', () => {
     CronController.getCovidData().then(success => {
         //This Cron job update the daily Covid Data.
     }).catch(error => {
@@ -54,7 +54,7 @@ const PORT = process.env.PORT || 3000;
 
 //RUNNING THE SERVER
 app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT}`)
+    console.log(`Server is running on PORT: ${PORT}`)
 })
 
 

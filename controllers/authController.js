@@ -1,4 +1,3 @@
-const baseController = require('./baseController');
 const authService = require('../services/authService');
 const PROVIDER = require('../models/Provider');
 const RESOURCE = require('../models/Resource');
@@ -6,10 +5,9 @@ const createError = require('http-errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-class AuthController extends baseController {
+class AuthController {
 
     constructor() {
-        super();
         this.authService = new authService();
     }
 
@@ -77,7 +75,7 @@ class AuthController extends baseController {
 
                     } else if (result == true) {
                         //If email id & password match
-                        let token = jwt.sign({ email: provider.email, _id: provider._id }, 'SECRET', { expiresIn: '3h' });
+                        let token = jwt.sign({ email: provider.email, _id: provider._id }, process.env.JWT_KEY, { expiresIn: '3h' });
 
                         return res.status(200).send({ message: "Welcome! Authentication successfull", success: true, token: token });
 
