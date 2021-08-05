@@ -4,6 +4,7 @@
   "description": "This is the backend file of covid19-helpline-resource application.",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Prosenjit Sardar",
